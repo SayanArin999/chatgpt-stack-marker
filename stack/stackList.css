@@ -1,0 +1,43 @@
+.csm-stack-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.csm-stack-row {
+    padding: 6px 4px;
+    font-size: 12px;
+    color: #2e2e2e;
+}
+
+.csm-stack-sl {
+    text-align: center;
+    opacity: 0.6;
+}
+
+.csm-stack-title-cell {
+    min-width: 0;
+    max-width: 100%;
+    line-height: 1.2;
+}
+
+.csm-stack-time {
+    font-size: 11px;
+    opacity: 0.6;
+    text-align: right;
+}
+
+.csm-stack-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.csm-stack-delete:hover {
+    opacity: 1;
+}
+
+.csm-stack-sl-link:hover {
+    text-decoration: underline;
+}

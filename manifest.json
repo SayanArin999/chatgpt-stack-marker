@@ -1,0 +1,54 @@
+{
+    "manifest_version": 3,
+    "name": "ZAYU",
+    "version": "0.1",
+    "description": "Mark important ChatGPT messages and jump back to them using a side stack.",
+    "icons": {
+        "16": "icon/gin-16.png",
+        "32": "icon/gin-32.png",
+        "48": "icon/gin-48.png",
+        "128": "icon/gin-128.png"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_title": "ZAYU",
+        "default_icon": {
+            "16": "icon/gin-16.png",
+            "32": "icon/gin-32.png",
+            "48": "icon/gin-48.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js",
+                "stack/stackList.js",
+                "panel/stackPanel.js",
+                "modal/namingModal.js"
+            ],
+            "css": [
+                "bookmark.css",
+                "panel/stackPanel.css",
+                "modal/namingModal.css"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "icon/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

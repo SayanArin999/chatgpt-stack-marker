@@ -1,0 +1,67 @@
+/* Backdrop overlay */
+.csm-spotlight-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+
+    background: rgba(0, 0, 0, 0.18);
+}
+
+
+/* Main spotlight search box */
+.csm-spotlight-box {
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 720px;
+    max-width: 85vw;
+    height: 56px;
+
+    /* === GLASS CORE === */
+    background: hsl(0, 0%, 100%, 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid hsl(0, 0%, 100%, 0.6);
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 0 4px 1px hsl(0, 0%, 100%, 0.6),
+        0 20px 60px rgba(0, 0, 0, 0.25);
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+}
+
+
+/* Input field */
+.csm-spotlight-input {
+    width: 100%;
+    height: 100%;
+
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow:none !important;
+
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+
+    color: #1d1d1f;
+}
+
+
+.csm-spotlight-input::placeholder {
+    color: rgba(29, 29, 31, 0.526);
+}
+
+/* Selection color */
+.csm-spotlight-input::selection {
+    background: rgba(10, 132, 255, 0.3);
+}

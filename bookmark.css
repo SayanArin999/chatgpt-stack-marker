@@ -1,0 +1,37 @@
+.csm-bookmark-btn {
+    position: absolute;
+    z-index: 9999;
+
+    width: 53px;
+    height: 50px;
+
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+
+    background: #8e7070;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.csm-bookmark-btn.visible {
+    display: flex;
+}
+
+.csm-bookmark-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.csm-bookmark-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
