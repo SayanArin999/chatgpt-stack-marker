@@ -59,9 +59,9 @@ function createStackPanel() {
     const percentage = currentValue / 100;
     sliderThumb.style.left = `${percentage * 100}%`;
 
-    // Update blur
-    const blurPx = (currentValue / 100) * 16;
-    panel.style.backdropFilter = blurPx === 0 ? "none" : `blur(${blurPx}px)`;
+    // Slide left → panel fades out so you can read the content underneath
+    // Minimum 0.08 so the panel never fully vanishes
+    panel.style.opacity = Math.max(0.08, percentage);
   }
 
   function handleMove(clientX) {
