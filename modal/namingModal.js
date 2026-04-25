@@ -75,24 +75,3 @@ function closeModal() {
     saveCallback = null;
 }
 
-/* ---------- ENTER INPUT ---------- */
-function initNamingModal(onSubmit) {
-    const input = document.querySelector("#stack-title-input");
-
-    if (!input) return;
-
-    input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-
-            const title = input.value.trim();
-            if (!title) return;
-
-            onSubmit(title);
-
-            input.value = "";
-            document.querySelector("#spotlight-modal")?.remove();
-        }
-    });
-}
-

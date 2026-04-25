@@ -141,27 +141,6 @@ function openStackPanelIfClosed() {
   }
 }
 
-// function addStackItem(title) {
-//   const panel = createStackPanel();
-//   const body = panel.querySelector(".csm-stack-body");
-
-//   const timestamp = new Date().toLocaleTimeString([], {
-//     hour: "2-digit",
-//     minute: "2-digit",
-//   });
-
-//   // Remove placeholder text if exists
-//   if (body.children.length === 0) {
-//     body.textContent = "";
-//   }
-
-//   const item = document.createElement("div");
-//   item.className = "csm-stack-item";
-//   item.textContent = `${title}    ${timestamp}`;
-
-//   body.prepend(item); // TOP insertion
-// }
-
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.action === "TOGGLE_STACK_PANEL") {

@@ -37,7 +37,8 @@
             "css": [
                 "bookmark.css",
                 "panel/stackPanel.css",
-                "modal/namingModal.css"
+                "modal/namingModal.css",
+                "stack/stackList.css"
             ]
         }
     ],
