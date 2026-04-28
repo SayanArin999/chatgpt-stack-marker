@@ -211,69 +211,81 @@
 
 /* ============================================================
    DARK MODE  —  toggled via .csm-dark on the panel root
-   Colors: Ink #1A1A1A · Warm white #E8E0D4 · Orange #E8721C
    ============================================================ */
 
 .csm-stack-panel.csm-dark {
-  background: #1A1A1A;
-  border-color: #3A3A3A;
-  box-shadow: 5px 5px 0px #E8721C;
+  background: #2C3410;
+  border-color: #5C6E1E;
+  box-shadow: 5px 5px 0px #C8907E;
 }
 
 /* Nav */
 .csm-stack-panel.csm-dark .csm-stack-nav {
-  background: #222222;
-  border-bottom-color: #3A3A3A;
+  background: #3A460F;
+  border-bottom-color: #5C6E1E;
 }
 
 .csm-stack-panel.csm-dark .csm-stack-title {
-  color: #E8E0D4;
+  color: #E2DDC8;
 }
 
 .csm-stack-panel.csm-dark .csm-stack-close {
-  border-color: #3A3A3A;
-  color: #E8E0D4;
+  border-color: #5C6E1E;
+  color: #E2DDC8;
 }
 
 .csm-stack-panel.csm-dark .csm-stack-close:hover {
-  background: #E8721C;
-  border-color: #E8721C;
-  color: #1A1A1A;
+  background: #C8907E;
+  border-color: #C8907E;
+  color: #2C3410;
 }
 
 .csm-stack-panel.csm-dark .csm-theme-toggle {
-  border-color: #3A3A3A;
-  color: #E8E0D4;
+  border-color: #5C6E1E;
+  color: #E2DDC8;
 }
 
 .csm-stack-panel.csm-dark .csm-theme-toggle:hover {
-  background: #E8721C;
-  border-color: #E8721C;
-  color: #1A1A1A;
+  background: #C8907E;
+  border-color: #C8907E;
+  color: #2C3410;
 }
 
 /* Body scrollbar */
 .csm-stack-panel.csm-dark .csm-stack-body::-webkit-scrollbar-thumb {
-  background: #444444;
+  background: #5C6E1E;
 }
 
 .csm-stack-panel.csm-dark .csm-stack-body::-webkit-scrollbar-thumb:hover {
-  background: #E8721C;
+  background: #C8907E;
 }
 
 /* Footer */
 .csm-stack-panel.csm-dark .csm-stack-footer {
-  background: #222222;
-  border-top-color: #3A3A3A;
+  background: #3A460F;
+  border-top-color: #5C6E1E;
 }
 
 /* Slider */
 .csm-stack-panel.csm-dark .csm-slider-track {
-  background: #333333;
-  border-color: #3A3A3A;
+  background: #4A5818;
+  border-color: #5C6E1E;
 }
 
-/* Summary button — orange stays, just darken border slightly */
+.csm-stack-panel.csm-dark .csm-slider-thumb {
+  background: #C8907E;
+  border-color: #5C6E1E;
+}
+
+/* Summary button — rose accent replaces orange in dark mode */
 .csm-stack-panel.csm-dark .csm-stack-summary {
-  border-color: #E8721C;
-}
+  background: #C8907E;
+  border-color: #C8907E;
+  color: #2C3410;
+}
+
+.csm-stack-panel.csm-dark .csm-stack-summary:hover {
+  box-shadow: 2px 2px 0 #C8907E;
+  filter: brightness(1.08);
+}
+
