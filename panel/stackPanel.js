@@ -20,8 +20,30 @@ function createStackPanel() {
   closeBtn.textContent = "✕";
   closeBtn.onclick = () => (panel.style.display = "none");
 
+  // ---------- THEME TOGGLE ----------
+  const themeToggle = document.createElement("button");
+  themeToggle.className = "csm-theme-toggle";
+  themeToggle.title = "Toggle dark / light mode";
+
+  // Restore saved theme
+  const isDarkSaved = localStorage.getItem("csm-theme") === "dark";
+  if (isDarkSaved) {
+    panel.classList.add("csm-dark");
+    themeToggle.textContent = "☀";
+  } else {
+    themeToggle.textContent = "☾";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = panel.classList.toggle("csm-dark");
+    themeToggle.textContent = isDark ? "☀" : "☾";
+    localStorage.setItem("csm-theme", isDark ? "dark" : "light");
+  });
+
   nav.appendChild(title);
+  nav.appendChild(themeToggle);
   nav.appendChild(closeBtn);
+
 
   // ---------- BODY ----------
   const body = document.createElement("div");

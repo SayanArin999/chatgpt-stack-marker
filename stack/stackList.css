@@ -62,6 +62,7 @@
   border: none;
   cursor: pointer;
   font-size: 13px;
+  color: #1C1C1C;         /* lock color — prevents dark site CSS bleeding in */
   opacity: 0.45;
   line-height: 1;
   transition: opacity 0.15s ease, transform 0.1s ease;
@@ -72,3 +73,34 @@
   opacity: 1;
   transform: scale(1.2);
 }
+
+/* ============================================================
+   DARK MODE — row card overrides
+   ============================================================ */
+
+.csm-stack-panel.csm-dark .csm-stack-row {
+  background: #252525;
+  border-color: #3A3A3A;
+  color: #E8E0D4;
+}
+
+.csm-stack-panel.csm-dark .csm-stack-row:hover {
+  box-shadow: 2px 2px 0 #E8721C;
+}
+
+/* Serial number — orange stays the same */
+
+/* Title */
+.csm-stack-panel.csm-dark .csm-stack-title-cell {
+  color: #E8E0D4;
+}
+
+/* Timestamp */
+.csm-stack-panel.csm-dark .csm-stack-time {
+  color: #E8E0D4;
+}
+
+/* Delete button — lock to light color so dark-site CSS can't bleed in */
+.csm-stack-panel.csm-dark .csm-stack-delete {
+  color: #E8E0D4;
+}
