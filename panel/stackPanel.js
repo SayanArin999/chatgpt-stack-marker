@@ -111,12 +111,13 @@ function createStackPanel() {
   // Initialize position
   updateThumbPosition(currentValue);
 
-  const exitBtn = document.createElement("button");
-  exitBtn.className = "csm-stack-exit";
-  exitBtn.textContent = "Exit";
+  const summaryBtn = document.createElement("button");
+  summaryBtn.className = "csm-stack-summary";
+  summaryBtn.textContent = "Summary";
 
   footer.appendChild(sliderContainer);
-  footer.appendChild(exitBtn);
+  footer.appendChild(summaryBtn);
+
 
   // ---------- ASSEMBLE ----------
   panel.appendChild(nav);

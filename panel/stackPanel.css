@@ -145,8 +145,8 @@
   transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* ---------- EXIT BUTTON ---------- */
-.csm-stack-exit {
+/* ---------- SUMMARY BUTTON ---------- */
+.csm-stack-summary {
   padding: 5px 14px;
   border-radius: 4px;
   border: 2px solid #1C1C1C;
@@ -164,12 +164,12 @@
   white-space: nowrap;
 }
 
-.csm-stack-exit:hover {
+.csm-stack-summary:hover {
   box-shadow: 2px 2px 0 #1C1C1C;
   transform: translate(-1px, -1px);
 }
 
-.csm-stack-exit:active {
+.csm-stack-summary:active {
   box-shadow: none;
   transform: translate(0, 0);
 }
@@ -179,7 +179,7 @@
 .csm-stack-close,
 .csm-stack-body,
 .csm-stack-footer,
-.csm-stack-exit,
+.csm-stack-summary,
 .csm-slider-track,
 .csm-slider-thumb {
   pointer-events: auto;
