@@ -27,25 +27,24 @@ window.StackList = (function () {
         }
 
         try {
-            const sel = window.getSelection();
-            sel.removeAllRanges();
-
             const range = deserializeRange(item.range);
-            sel.addRange(range);
 
+            // Grab rect for scroll position BEFORE touching selection
             const rect = range.getBoundingClientRect();
             const y = rect.top + window.scrollY - 120;
 
-            window.scrollTo({
-                top: y,
-                behavior: "smooth"
-            });
+            // Clear any existing browser selection — we don't want the blue highlight
+            window.getSelection().removeAllRanges();
 
+            window.scrollTo({ top: y, behavior: "smooth" });
+
+            // Show only our orange overlay — no native blue selection
             highlightRange(range);
         } catch (e) {
             console.warn("Restore failed", e);
         }
     }
+
 
     function getNodePath(node) {
         const path = [];
@@ -133,31 +132,41 @@ window.StackList = (function () {
         });
     }
 
+    // Module-level so previous highlights are always cleared before new ones draw
+    let activeOverlays = [];
+
     function highlightRange(range) {
+        // Clear any existing highlight overlays first — prevents stacking on repeated clicks
+        activeOverlays.forEach(el => el.remove());
+        activeOverlays = [];
+
         const rects = Array.from(range.getClientRects());
         if (!rects.length) return;
 
-        const overlays = [];
-
         rects.forEach(rect => {
             const div = document.createElement("div");
-            div.style.position = "absolute";
-            div.style.left = rect.left + window.scrollX + "px";
-            div.style.top = rect.top + window.scrollY + "px";
-            div.style.width = rect.width + "px";
-            div.style.height = rect.height + "px";
-            div.style.background = "rgba(255, 230, 150, 0.6)";
+            div.style.position      = "absolute";
+            div.style.left          = rect.left + window.scrollX + "px";
+            div.style.top           = rect.top  + window.scrollY + "px";
+            div.style.width         = rect.width  + "px";
+            div.style.height        = rect.height + "px";
+            div.style.background    = "rgba(232, 114, 28, 0.15)";   /* light orange tint */
+            div.style.border        = "1.5px solid rgba(232, 114, 28, 0.55)";
+            div.style.borderRadius  = "2px";
+            div.style.boxSizing     = "border-box";
             div.style.pointerEvents = "none";
-            div.style.zIndex = "999999";
+            div.style.zIndex        = "999998";
 
             document.body.appendChild(div);
-            overlays.push(div);
+            activeOverlays.push(div);
         });
 
         setTimeout(() => {
-            overlays.forEach(el => el.remove());
-        }, 2000);
+            activeOverlays.forEach(el => el.remove());
+            activeOverlays = [];
+        }, 5000);
     }
+
 
 
     return { init, add };

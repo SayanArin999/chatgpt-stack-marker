@@ -98,6 +98,17 @@ document.addEventListener("mouseup", () => {
         return;
     }
 
+    // 🚫 Ignore selections inside our own UI (stack panel or the bookmark button)
+    const anchorNode = selection.anchorNode;
+    const panel = document.querySelector(".csm-stack-panel");
+    if (
+        (panel && panel.contains(anchorNode)) ||
+        (bookmarkBtn && bookmarkBtn.contains(anchorNode))
+    ) {
+        hideBookmarkButton();
+        return;
+    }
+
     const range = selection.getRangeAt(0);
     const rect = range.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
@@ -107,6 +118,7 @@ document.addEventListener("mouseup", () => {
         rect.top + window.scrollY - 6
     );
 });
+
 
 /* ---------- CLEANUP WHEN SELECTION IS CLEARED ---------- */
 let selectionRAF = null;
