@@ -80,6 +80,37 @@ window.StackList = (function () {
         return range;
     }
 
+    // ---- DRAG-TO-REORDER STATE ----
+    let dragSrcIndex = null;   // index of the row being dragged
+    let dropIndicator = null;  // the thin line shown between rows
+
+    function createDropIndicator() {
+        const line = document.createElement("div");
+        line.className = "csm-drop-indicator";
+        return line;
+    }
+
+    /** Insert drop-indicator before the row at `targetIndex`, or after last row if targetIndex === items.length */
+    function showIndicatorAt(targetIndex) {
+        if (!dropIndicator) return;
+        const rows = container.querySelectorAll(".csm-stack-row");
+        if (targetIndex < rows.length) {
+            container.insertBefore(dropIndicator, rows[targetIndex]);
+        } else {
+            container.appendChild(dropIndicator);
+        }
+    }
+
+    /** Return the index (0-based) of the row the cursor is closest to (above or below mid-point) */
+    function getDropIndex(clientY) {
+        const rows = Array.from(container.querySelectorAll(".csm-stack-row"));
+        for (let i = 0; i < rows.length; i++) {
+            const rect = rows[i].getBoundingClientRect();
+            if (clientY < rect.top + rect.height / 2) return i;
+        }
+        return rows.length;
+    }
+
     function render() {
         if (!container) return;
         container.innerHTML = "";
@@ -87,6 +118,7 @@ window.StackList = (function () {
         items.forEach((item, index) => {
             const row = document.createElement("div");
             row.className = "csm-stack-row";
+            row.dataset.index = index;
 
             /* FORCE GRID INLINE (bypasses site CSS) */
             row.style.display = "grid";
@@ -94,6 +126,47 @@ window.StackList = (function () {
             row.style.alignItems = "center";
             row.style.columnGap = "8px";
 
+            // ---- ROW-LEVEL DRAG (whole row is the handle) ----
+            row.addEventListener("mousedown", (e) => {
+                // Don't hijack the delete button
+                if (e.target.closest(".csm-stack-delete")) return;
+                e.preventDefault();
+                dragSrcIndex = index;
+                row.classList.add("csm-dragging");
+
+                dropIndicator = createDropIndicator();
+                showIndicatorAt(index);
+
+                function onMove(ev) {
+                    const di = getDropIndex(ev.clientY);
+                    showIndicatorAt(di);
+                }
+
+                function onUp(ev) {
+                    document.removeEventListener("mousemove", onMove);
+                    document.removeEventListener("mouseup", onUp);
+
+                    let targetIndex = getDropIndex(ev.clientY);
+
+                    // Clean up visual state
+                    row.classList.remove("csm-dragging");
+                    if (dropIndicator) { dropIndicator.remove(); dropIndicator = null; }
+
+                    // Adjust target if dragging downward (splice removes original first)
+                    if (targetIndex !== dragSrcIndex && targetIndex !== dragSrcIndex + 1) {
+                        const [moved] = items.splice(dragSrcIndex, 1);
+                        const insertAt = targetIndex > dragSrcIndex ? targetIndex - 1 : targetIndex;
+                        items.splice(insertAt, 0, moved);
+                        render();
+                    }
+                    dragSrcIndex = null;
+                }
+
+                document.addEventListener("mousemove", onMove);
+                document.addEventListener("mouseup", onUp);
+            });
+
+            // ---- SERIAL NUMBER ----
             const sl = document.createElement("div");
             sl.className = "csm-stack-sl";
             sl.textContent = index + 1;

@@ -25,6 +25,26 @@
 .csm-stack-row:hover {
   box-shadow: 2px 2px 0 #1C1C1C;
   transform: translate(-1px, -1px);
+  cursor: grab;
+}
+
+.csm-stack-row.csm-dragging {
+  opacity: 0.45;
+  outline: 2px dashed #E8721C;
+  outline-offset: -2px;
+  box-shadow: none;
+  transform: none;
+  background: #FFF4E5;
+  cursor: grabbing;
+}
+
+/* Drop indicator line */
+.csm-drop-indicator {
+  height: 2px;
+  background: #E8721C;
+  border-radius: 2px;
+  margin: 2px 0;
+  pointer-events: none;
 }
 
 /* ---------- SERIAL NUMBER ---------- */
@@ -107,5 +127,16 @@
 /* Delete button — lock to cream so dark-site CSS can't bleed in */
 .csm-stack-panel.csm-dark .csm-stack-delete {
   color: #E2DDC8;
+}
+
+/* Dragging row — dark mode */
+.csm-stack-panel.csm-dark .csm-stack-row.csm-dragging {
+  background: #2A3510;
+  outline-color: #C8907E;
+}
+
+/* Drop indicator — dark mode */
+.csm-stack-panel.csm-dark .csm-drop-indicator {
+  background: #C8907E;
 }
 

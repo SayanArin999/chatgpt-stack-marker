@@ -182,7 +182,10 @@
 .csm-stack-summary,
 .csm-theme-toggle,
 .csm-slider-track,
-.csm-slider-thumb {
+.csm-slider-thumb,
+.csm-stack-row,
+.csm-stack-sl,
+.csm-stack-delete {
   pointer-events: auto;
 }
 
